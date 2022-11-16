@@ -1,21 +1,22 @@
 import { FunctionComponent } from "react";
 import NavButton from "./navbutton";
+import Icons from "./svgs";
 
 interface OrderProps {}
 
 const Order: FunctionComponent<OrderProps> = () => {
   return (
-    <div className="bg-gray-700 px-4 py-4 rounded shadow-sm ">
+    <div className="bg-gray-700 group hover:shadow-lg hover:ring-2 ring-green-300 px-4 py-4 rounded shadow-sm ">
       <div className="flex  justify-between items-start">
         <div>
           <div className="text-sm text-gray-500">12 Apr 2019</div>
-          <h2 className="text-lg font-medium text-white">
+          <h2 className="text-lg group-hover:text-green-200 font-medium text-white">
             Data Analysis using R
           </h2>
         </div>
 
         <div>
-          <button className="text-gray-500">...</button>
+          <button className="text-gray-500"><Icons.MoreHorizontal className="w-6 h-6" /></button>
         </div>
       </div>
 
@@ -29,7 +30,7 @@ const Order: FunctionComponent<OrderProps> = () => {
               </div>
             ))}
         </div>
-        <NavButton />
+        <NavButton icon="CheckCircle" />
       </div>
 
       <div className="mt-4">
