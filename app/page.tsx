@@ -1,57 +1,37 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Line from "./components/line";
+import Nav from "./components/nav";
+import NavButton from "./components/navbutton";
+import Order from "./components/order";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js 13!</a>
-        </h1>
+    <div className="w-full min-h-screen bg-gray-800 flex">
+      <Nav />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
+      <div className="px-4 pt-8 w-full">
+        <div className="flex justify-between">
+          <div>
+            <div className="flex space-x-4 items-center">
+              <h1 className="font-medium text-2xl text-white">E-Commerce</h1>
+              <button className="text-gray-500 text-md">S</button>
+            </div>
+            <p className="text-gray-500">15 members</p>
+          </div>
 
-        <div className={styles.grid}>
-          <a href="https://beta.nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js 13</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Explore the Next.js 13 playground.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates/next.js/app-directory?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
+          <div className="flex items-center space-x-4">
+            <button className="text-white bg-green-400 rounded-md px-8 py-1">
+              New Order
+            </button>
+            <button className=" font-bold text-gray-600"> ... </button>
+          </div>
         </div>
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+        <div className="mt-12 min-w-fit overflow-x-auto flex h-full">
+          <Line />
+          <Line />
+          <Line />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
