@@ -23,7 +23,9 @@ const Nav: FunctionComponent<NavProps> = () => {
 
       <div className="flex-1" />
       <div>
-        <NavButton icon="Info" />
+        <Link href="/start">
+        <NavButton icon="Add" />
+        </Link>
       </div>
     </div>
   );
