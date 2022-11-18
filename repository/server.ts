@@ -1,6 +1,9 @@
 import { IGroup, ILine, IOrder, IProduct, ITag } from "./types";
 
-const ENDPOINT = "http://localhost:3001";
+const ENDPOINT =
+  process.env.NODE_ENV === "production"
+    ? "https://api-yboq3dpusa-uc.a.run.app/"
+    : "http://localhost:3001";
 
 const auth =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VyIjoiZHNkIn0.YSDNYBsfLHcc20s7gT0_DjkTj8DmcQICurdz0NWtnIY";
