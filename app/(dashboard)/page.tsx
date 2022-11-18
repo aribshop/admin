@@ -29,7 +29,7 @@ export default async function Home() {
         </div>
 
         <div className="overflow-x-auto  overflow-y-hidden mt-12 flex justify-around max-w-full ">
-          {lines.map((line) => (
+          {lines?.map((line) => (
             <Line name={line.name} orders={0} id={line.id} />
           ))}
         </div>

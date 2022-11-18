@@ -1,6 +1,6 @@
 "use client";
 import { FunctionComponent } from "react";
-import { getOrders } from "../../../repository/server";
+import { getOrders } from "../../../../repository/server";
 import {useQuery} from "@tanstack/react-query";
 import Order from "./order";
 

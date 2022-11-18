@@ -1,5 +1,4 @@
-import { rewrite } from "@vercel/edge";
-import { hostname } from "os";
+import { rewrite, next } from "@vercel/edge";
 
 export const config = {
   // Only run the middleware on the home route
@@ -16,6 +15,20 @@ export default function middleware(request: Request) {
   if (url.pathname !== "/login" && !request.headers.get("cookie")) {
     url.pathname = "/login";
     return Response.redirect(url);
+  }
+  // if the request has a cookie, redirect to home and set "set-cookie" header
+  if (
+    url.pathname === "/" &&
+    url.search.includes("authorized") &&
+    request.headers.get("cookie")
+  ) {
+    url.search = "";
+
+    return rewrite(url, {
+      headers: {
+        "set-cookie": request.headers.get("cookie")! + "; HttpOnly",
+      },
+    });
   }
 
   return rewrite(url);

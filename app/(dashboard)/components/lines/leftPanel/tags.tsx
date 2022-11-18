@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getTags } from "../../../../repository/server";
+import { getTags } from "../../../../../repository/server";
 import Card from "./card";
 
 interface TagsProps {

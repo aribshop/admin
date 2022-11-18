@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getGroups } from "../../../../repository/server";
+import { getGroups } from "../../../../../repository/server";
 import Card from "./card";
 
 interface GroupsProps {

@@ -10,9 +10,8 @@ const auth =
 
 export async function getLines(): Promise<ILine[]> {
   const response = await fetch(`${ENDPOINT}/chain/lines`, {
-    headers: {
-      Authorization: "Bearer " + auth,
-    },
+    credentials: "include",
+
   });
 
   const data = await response.json();
@@ -21,9 +20,8 @@ export async function getLines(): Promise<ILine[]> {
 
 export async function getGroups(): Promise<IGroup[]> {
   const response = await fetch(`${ENDPOINT}/chain/groups`, {
-    headers: {
-      Authorization: "Bearer " + auth,
-    },
+    credentials: "include",
+    
   });
 
   const data = await response.json();
@@ -32,9 +30,8 @@ export async function getGroups(): Promise<IGroup[]> {
 
 export async function getTags(): Promise<ITag[]> {
   const response = await fetch(`${ENDPOINT}/chain/tags`, {
-    headers: {
-      Authorization: "Bearer " + auth,
-    },
+    credentials: "include",
+    
   });
 
   const data = await response.json();
@@ -49,9 +46,8 @@ export async function getProducts(siteId: string): Promise<IProduct[]> {
 
 export async function getOrders(lineId: string): Promise<IOrder[]> {
   const response = await fetch(`${ENDPOINT}/chain/orders/${lineId}`, {
-    headers: {
-      Authorization: "Bearer " + auth,
-    },
+    
+    credentials: "include",
   });
 
   const data = await response.json();
