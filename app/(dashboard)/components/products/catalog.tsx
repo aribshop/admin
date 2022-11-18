@@ -2,8 +2,8 @@
 
 import { FunctionComponent, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../../repository/server";
 import ProductItem from "./productItem";
+import { getProducts } from "../../../../repository/server";
 
 interface CatalogProps {
   siteId: string;

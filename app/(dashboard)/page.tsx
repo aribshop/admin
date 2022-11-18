@@ -1,4 +1,4 @@
-import { getLines } from "../repository/server";
+import { getLines } from "../../repository/server";
 import LeftPanel from "./components/lines/leftPanel";
 import Line from "./components/lines/line";
 import Icons from "./components/svgs";
