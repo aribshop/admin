@@ -1,3 +1,4 @@
+import Catalog from "../components/products/catalog";
 import ProductItem from "../components/products/productItem";
 import RightPanel from "../components/products/rightPanel";
 import Icons from "../components/svgs";
@@ -24,11 +25,7 @@ export default function Dashbaord() {
 
         {/* grid 3 * n */}
         <div className="mt-4 grid grid-cols-3 gap-4">
-          {Array(10)
-            .fill(null)
-            .map((_) => (
-              <ProductItem />
-            ))}
+          <Catalog siteId={"amazon"} />
         </div>
       </div>
 

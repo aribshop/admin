@@ -1,8 +1,10 @@
 import { FunctionComponent } from "react";
-import NavButton from "./navbutton";
-import Icons from "./svgs";
+import NavButton from "../navbutton";
+import Icons from "../svgs";
 
-interface OrderProps {}
+interface OrderProps {
+  
+}
 
 const Order: FunctionComponent<OrderProps> = () => {
   return (
@@ -16,7 +18,9 @@ const Order: FunctionComponent<OrderProps> = () => {
         </div>
 
         <div>
-          <button className="text-gray-500"><Icons.MoreHorizontal className="w-6 h-6" /></button>
+          <button className="text-gray-500">
+            <Icons.MoreHorizontal className="w-6 h-6" />
+          </button>
         </div>
       </div>
 

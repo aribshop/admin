@@ -3,7 +3,10 @@ import SelledCard from "../components/dashobard/selledCard";
 import StatsCard from "../components/dashobard/statsCard";
 import Icons from "../components/svgs";
 
-export default function Dashbaord() {
+export default async function Dashbaord() {
+
+
+  
   return (
     <>
       <div className="p-12">

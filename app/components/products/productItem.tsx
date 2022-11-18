@@ -1,9 +1,14 @@
+import Link from "next/link";
 import { FunctionComponent } from "react";
 import Icons from "../svgs";
 
-interface productItemProps {}
+interface productItemProps {
+  name: string;
+  picutre?: string;
+  id: string;
+}
 
-const productItem: FunctionComponent<productItemProps> = () => {
+const productItem: FunctionComponent<productItemProps> = (props) => {
   return (
     <div className="bg-white/10 hover:ring-2 ring-green-600 hover:shadow rounded-md p-4">
       <div className="flex items-center justify-between">
@@ -14,14 +19,15 @@ const productItem: FunctionComponent<productItemProps> = () => {
           <Icons.MoreVertical className="w-5 h-5 text-gray-400" />
         </button>
       </div>
-      <img
-        src="https://laknabil.me/nabil.png"
-        className="mx-auto w-20 filter grayscale mt-2"
-      />
-      <h2 className="text-gray-200 text-center mt-6 max-w-xs">
-        Product type of general stuff
-      </h2>
-
+      <Link href={`products/${props.id}`}>
+        <img
+          src={props.picutre ?? "https://laknabil.me/nabil.png"}
+          className="mx-auto w-20 filter grayscale mt-2"
+        />
+        <h2 className="text-gray-200 text-center mt-6 max-w-xs">
+          {props.name}
+        </h2>
+      </Link>
       <div className="mt-6 pt-3 border-t border-gray-600 flex items-center justify-between">
         <div>
           <label className="text-sm text-gray-200">FileSize:</label>
