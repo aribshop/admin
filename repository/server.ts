@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { IGroup, ILine, IOrder, IProduct, ITag } from "./types";
 
 const ENDPOINT =
@@ -8,10 +9,11 @@ const ENDPOINT =
 const auth =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VyIjoiZHNkIn0.YSDNYBsfLHcc20s7gT0_DjkTj8DmcQICurdz0NWtnIY";
 
-export async function getLines(): Promise<ILine[]> {
+export async function getLines(auth: string): Promise<ILine[]> {
   const response = await fetch(`${ENDPOINT}/chain/lines`, {
-    credentials: "include",
-
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
   });
 
   const data = await response.json();
@@ -21,7 +23,6 @@ export async function getLines(): Promise<ILine[]> {
 export async function getGroups(): Promise<IGroup[]> {
   const response = await fetch(`${ENDPOINT}/chain/groups`, {
     credentials: "include",
-    
   });
 
   const data = await response.json();
@@ -31,7 +32,6 @@ export async function getGroups(): Promise<IGroup[]> {
 export async function getTags(): Promise<ITag[]> {
   const response = await fetch(`${ENDPOINT}/chain/tags`, {
     credentials: "include",
-    
   });
 
   const data = await response.json();
@@ -46,7 +46,6 @@ export async function getProducts(siteId: string): Promise<IProduct[]> {
 
 export async function getOrders(lineId: string): Promise<IOrder[]> {
   const response = await fetch(`${ENDPOINT}/chain/orders/${lineId}`, {
-    
     credentials: "include",
   });
 

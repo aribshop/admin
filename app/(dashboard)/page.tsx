@@ -1,39 +1,57 @@
-import { getLines } from "../../repository/server";
-import LeftPanel from "./components/lines/leftPanel";
-import Line from "./components/lines/line";
-import Icons from "./components/svgs";
+import AchievementCard from "./components/dashobard/achievementCard";
+import SelledCard from "./components/dashobard/selledCard";
+import StatsCard from "./components/dashobard/statsCard";
 
-export default async function Home() {
-  const lines = await getLines();
 
+export default async function Dashbaord() {
+
+
+  
   return (
-    <div className="flex items-stretch">
-      <LeftPanel />
-      <div className="flex-1 px-4 pt-8 min-h-screen">
-        <div className="flex justify-between items-start">
-          <div>
-            <div className="flex space-x-4 items-center">
-              <h1 className="font-medium text-2xl text-white">E-Commerce</h1>
-            </div>
-            <p className="text-gray-500">15 members</p>
-          </div>
+    <>
+      <div className="p-12">
+        <h1 className="text-2xl text-white">Walcome, Nabil</h1>
+      </div>
 
-          <div className="flex items-center space-x-4">
-            <button className="text-white bg-green-400 rounded-md px-8 py-1">
-              New Line
-            </button>
-            <button className=" font-bold text-gray-600">
-              <Icons.MoreVertical className="w-6 h-6" />{" "}
-            </button>
-          </div>
+      <div className="mt-1 flex px-12 space-x-12">
+        <div className="max-w-sm  w-full bg-gray-700 shadow-sm rounded-xl p-4 ">
+          <img src="https://laknabil.me/nabil.png" className="mx-auto w-24" />
+
+          <AchievementCard />
+          <AchievementCard />
+          <AchievementCard />
+          <AchievementCard />
         </div>
 
-        <div className="overflow-x-auto  overflow-y-hidden mt-12 flex justify-around max-w-full ">
-          {lines?.map((line) => (
-            <Line name={line.name} orders={0} id={line.id} />
-          ))}
+        <div className="flex-1">
+          <div className="flex justify-between items-start space-x-4">
+            <StatsCard />
+            <StatsCard />
+            <StatsCard />
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-600">
+            <div className="p-6 border-b border-gray-600">
+              <div className="relative">
+                <div className="absolute flex inset-0 z-10 text-white">
+                  <span>Hello World</span>
+                </div>
+                <img
+                  src="https://laknabil.me/background.png"
+                  className="w-full h-48  bg-cover rounded-xl shadow"
+                />
+              </div>
+            </div>
+
+            {/* list of items, each has image  title date price*/}
+            <div className="p-4 space-y-2">
+                <SelledCard />
+                <SelledCard />
+              
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

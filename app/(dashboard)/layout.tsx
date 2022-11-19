@@ -1,5 +1,5 @@
 "use client";
-import Nav from "./components/nav";
+import Nav from "./components/navigation/nav";
 import "./globals.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

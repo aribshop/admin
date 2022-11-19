@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import NavButton from "../navbutton";
+import NavButton from "../navigation/navbutton";
 import Icons from "../svgs";
 
 interface OrderProps {

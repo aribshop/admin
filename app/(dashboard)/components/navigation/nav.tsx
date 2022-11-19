@@ -9,10 +9,10 @@ const Nav: FunctionComponent<NavProps> = () => {
     <div className="sticky h-screen top-0 border-r bg-slate-700  border-neutral-600 p-4 flex flex-col items-center">
       <div className="text-4xl font-bold text-white ">A</div>
       <div className="mt-12 flex flex-col items-center space-y-4">
-        <Link href="/dashboard">
+        <Link href="/">
           <NavButton icon="Home" />
         </Link>
-        <Link href="/">
+        <Link href="/lines">
           <NavButton icon="Columns" />
         </Link>
         <Link href="/products">
