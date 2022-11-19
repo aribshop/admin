@@ -21,6 +21,7 @@ export interface IGroup {
 export interface ITag {
   id: string;
   name: string;
+  description: string;
 }
 
 export interface IProduct {
@@ -41,4 +42,24 @@ export interface IOrder {
   product: string;
   site: string;
   status: string;
+  date: Date;
+  lastUpdated: Date;
+}
+
+export interface IConfirmation {
+  id: string;
+  date: Date;
+  line: string;
+  order: string;
+  type: string;
+  user: string;
+}
+
+export interface IClient {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  created: Date;
+  location: string;
 }

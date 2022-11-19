@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <div className="flex items-stretch">
       <LeftPanel />
-      <div className="flex-1 px-4 pt-8 min-h-screen">
+      <div className="flex-1 px-4 pt-8 h-screen flex flex-col">
         <div className="flex justify-between items-start">
           <div>
             <div className="flex space-x-4 items-center">
@@ -27,12 +27,12 @@ export default async function Home() {
               New Line
             </button>
             <button className=" font-bold text-gray-600">
-              <Icons.MoreVertical className="w-6 h-6" />{" "}
+              <Icons.MoreVertical className="w-6 h-6" />
             </button>
           </div>
         </div>
 
-        <div className="overflow-x-auto  overflow-y-hidden mt-12 flex justify-around max-w-full ">
+        <div className="overflow-auto  snap-x relative  flex-1  divide divide-x-2 divide-slate-700  overflow-y-hidden mt-12 flex">
           {lines?.map((line) => (
             <Line name={line.name} orders={0} id={line.id} />
           ))}

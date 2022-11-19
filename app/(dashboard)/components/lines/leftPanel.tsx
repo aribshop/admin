@@ -28,8 +28,8 @@ const LeftPanel: FunctionComponent<LeftPanelProps> = () => {
 
       <div className="mt-4 flex justify-between items-center">
         <h2 className="text-2xl font-medium text-white">Organize</h2>
-        <button className="p-2 rounded-md bg-green-500 text-white">
-          <Icons.Add className="w-6 h-6" />
+        <button className="p-1 rounded-md bg-green-600/60* text-white">
+          <Icons.Add className="w-4 h-4" />
         </button>
       </div>
 

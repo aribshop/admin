@@ -1,5 +1,13 @@
 import { headers } from "next/headers";
-import { IGroup, ILine, IOrder, IProduct, ITag } from "./types";
+import {
+  IClient,
+  IConfirmation,
+  IGroup,
+  ILine,
+  IOrder,
+  IProduct,
+  ITag,
+} from "./types";
 
 const ENDPOINT =
   process.env.NODE_ENV === "production"
@@ -50,5 +58,49 @@ export async function getOrders(lineId: string): Promise<IOrder[]> {
   });
 
   const data = await response.json();
-  return data.orders;
+  return data.orders.map((order: any) => ({
+    ...order,
+    date: new Date(order.date),
+    lastUpdated: new Date(order.lastUpdated),
+  }));
+}
+
+export async function getOrderConfirmations(
+  orderId: string
+): Promise<IConfirmation[]> {
+  const response = await fetch(
+    `${ENDPOINT}/chain/order/confirmations/${orderId}`,
+    {
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+  return data.confirmations.map((confirmation: any) => ({
+    ...confirmation,
+    date: new Date(confirmation.date),
+  }));
+}
+
+// get product from id
+export async function getProduct(id: string): Promise<IProduct> {
+  const response = await fetch(`${ENDPOINT}/site/product/${id}`, {
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  return data.product;
+}
+
+// get client from ClientID
+export async function getClient(id: string): Promise<IClient> {
+  const response = await fetch(`${ENDPOINT}/users/client/${id}`, {
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  return {
+    ...data.client,
+    created: new Date(data.client.created),
+  };
 }
