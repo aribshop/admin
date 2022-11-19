@@ -63,3 +63,11 @@ export interface IClient {
   created: Date;
   location: string;
 }
+
+export interface IChain {
+  id: string;
+  name: string;
+  site: string;
+  lines: ILine[];
+  members: number;
+}

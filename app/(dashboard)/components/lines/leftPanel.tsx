@@ -1,6 +1,7 @@
 "use client";
 
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useContext, useState } from "react";
+import { LinesContext } from "../../../contexts/linesContext";
 import Icons from "../svgs";
 import Card from "./leftPanel/card";
 import Groups from "./leftPanel/groups";
@@ -11,7 +12,7 @@ interface LeftPanelProps {}
 const LeftPanel: FunctionComponent<LeftPanelProps> = () => {
   const [panel, setPanel] = useState<"all" | "groups" | "tags">("all");
 
-  const [search, setSearch] = useState("");
+  const linesContext = useContext(LinesContext);
 
   return (
     <div className="max-w-xs sticky top-0 h-screen px-8 pt-4 w-full bg-slate-700">
@@ -21,8 +22,8 @@ const LeftPanel: FunctionComponent<LeftPanelProps> = () => {
           type="text"
           className="bg-gray-700/20 outline-none text-gray-300 rounded-md px-2 py-1 w-full"
           placeholder="Search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={linesContext.search}
+          onChange={(e) => linesContext.setSearch(e.target.value)}
         />
       </div>
 
@@ -59,7 +60,7 @@ const LeftPanel: FunctionComponent<LeftPanelProps> = () => {
                   Groups
                 </h3>
                 <div className="space-y-2">
-                  <Groups search={search} />
+                  <Groups search={linesContext.search} />
                 </div>
               </>
             )}
@@ -70,7 +71,7 @@ const LeftPanel: FunctionComponent<LeftPanelProps> = () => {
                   Tags
                 </h3>
                 <div className="space-y-2">
-                  <Tags search={search} />
+                  <Tags search={linesContext.search} />
                 </div>
               </>
             )}

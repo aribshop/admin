@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import {
+  IChain,
   IClient,
   IConfirmation,
   IGroup,
@@ -103,4 +104,16 @@ export async function getClient(id: string): Promise<IClient> {
     ...data.client,
     created: new Date(data.client.created),
   };
+}
+
+// get chain
+export async function getChain(token: string): Promise<IChain> {
+  const response = await fetch(`${ENDPOINT}/chain`, {
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
+  });
+
+  const data = await response.json();
+  return data.chain;
 }

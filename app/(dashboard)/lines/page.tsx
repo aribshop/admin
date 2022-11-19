@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-import { getLines } from "../../../repository/server";
+import { getChain, getLines } from "../../../repository/server";
 import LeftPanel from "../components/lines/leftPanel";
 import Line from "../components/lines/line";
 import Icons from "../components/svgs";
@@ -8,7 +8,8 @@ import Icons from "../components/svgs";
 export default async function Home() {
   const token = cookies().get("token")!.value;
 
-  const lines = await getLines(token);
+  // const lines = await getLines(token);
+  const chain = await getChain(token);
 
   return (
     <div className="flex items-stretch">
@@ -17,9 +18,9 @@ export default async function Home() {
         <div className="flex justify-between items-start">
           <div>
             <div className="flex space-x-4 items-center">
-              <h1 className="font-medium text-2xl text-white">E-Commerce</h1>
+              <h1 className="font-medium text-2xl text-white">{chain.name}</h1>
             </div>
-            <p className="text-gray-500">15 members</p>
+            <p className="text-gray-500">{chain.members} members</p>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -33,8 +34,8 @@ export default async function Home() {
         </div>
 
         <div className="overflow-auto  snap-x relative  flex-1  divide divide-x-2 divide-slate-700  overflow-y-hidden mt-12 flex">
-          {lines?.map((line) => (
-            <Line name={line.name} orders={0} id={line.id} />
+          {chain?.lines?.map((line) => (
+            <Line name={line.name}  id={line.id} />
           ))}
         </div>
       </div>

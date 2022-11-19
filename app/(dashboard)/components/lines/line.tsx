@@ -1,22 +1,23 @@
-import { FunctionComponent } from "react";
-import Order from "./order";
+"use client";
+
+import { FunctionComponent, useState } from "react";
 import Orders from "./orders";
 
 interface LineProps {
   name: string;
-  orders: number;
   id: string;
 }
 
-const Line: FunctionComponent<LineProps> = ({ name, orders, id }) => {
+const Line: FunctionComponent<LineProps> = ({ name, id }) => {
+  const [totalOrder, setTotalOder] = useState(0);
   return (
     <div className="flex-grow snap-start shrink-0 px-4  w-full max-w-xs  h-full overflow-y-auto">
       <h2 className="text-lg font-medium text-gray-300">
-        {name} ({orders})
+        {name} ({totalOrder})
       </h2>
 
       <div className="mt-4 space-y-4">
-        <Orders lineId={id} />
+        <Orders lineId={id} setTotal={setTotalOder} />
       </div>
     </div>
   );
