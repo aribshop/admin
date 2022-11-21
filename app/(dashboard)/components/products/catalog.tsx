@@ -10,7 +10,7 @@ interface CatalogProps {
 }
 
 const Catalog: FunctionComponent<CatalogProps> = (props) => {
-  const { data, isLoading } = useQuery(["groups", props.siteId], () =>
+  const { data, isLoading } = useQuery(["products", props.siteId], () =>
     getProducts(props.siteId)
   );
 
@@ -20,13 +20,8 @@ const Catalog: FunctionComponent<CatalogProps> = (props) => {
 
   return (
     <>
-      {data?.map((group) => (
-        <ProductItem
-          name={group.metadata.name}
-          picutre={group.picture}
-          key={group.id}
-          id={group.id}
-        />
+      {data?.map((product) => (
+        <ProductItem product={product} key={product.id} />
       ))}
     </>
   );

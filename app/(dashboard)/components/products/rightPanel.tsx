@@ -6,9 +6,9 @@ interface RightPanelProps {}
 
 const RightPanel: FunctionComponent<RightPanelProps> = () => {
   return (
-    <div className="bg-gray-700 sticky top-0 w-full flex flex-col max-w-xs h-full p-4">
+    <div className="bg-gray-700 sticky h-screen top-0 w-full flex flex-col max-w-xs  p-4">
       <div className="flex space-x-4 pb-4 border-b border-gray-500">
-        <Icons.PiChart className="w-5 h-5 text-gray-500" />
+        <Icons.Package className="w-5 h-5 text-gray-500" />
         <span className="text-sm text-gray-200">Product Overview</span>
       </div>
 

@@ -3,10 +3,12 @@ import {
   IChain,
   IClient,
   IConfirmation,
+  ICustomProduct,
   IGroup,
   ILine,
   IOrder,
   IProduct,
+  IStandardProduct,
   ITag,
 } from "./types";
 

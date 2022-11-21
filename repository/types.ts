@@ -24,15 +24,39 @@ export interface ITag {
   description: string;
 }
 
-export interface IProduct {
+export interface ICustomProduct {
   id: string;
   metadata: {
     name: string;
     description: string;
     tag: string[];
   };
-  picture?: string;
+  isCustom: true;
+  dailyLimit: number;
+  form: {
+    id: string;
+    version: number;
+    lastUpdated: string;
+    fields: any[]; // todo add type
+  };
 }
+
+export interface IStandardProduct {
+  id: string;
+  metadata: {
+    name: string;
+    description: string;
+    tag: string[];
+  };
+  isCustom: false;
+  price: number;
+  quantity: number;
+  discount: number;
+  picture: string;
+}
+
+
+export type IProduct = ICustomProduct | IStandardProduct;
 
 export interface IOrder {
   user: string;
