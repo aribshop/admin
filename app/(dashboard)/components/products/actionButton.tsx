@@ -1,15 +1,23 @@
 import { FunctionComponent } from "react";
-import Icons from "../svgs";
+import Icons, { IconType } from "../svgs";
 
-interface ActionButtonProps {}
+interface ActionButtonProps {
+  icon: IconType;
+  onClick: () => void;
+  label: string;
+}
 
-const ActionButton: FunctionComponent<ActionButtonProps> = () => {
+const ActionButton: FunctionComponent<ActionButtonProps> = (props) => {
+  const Icon = Icons[props.icon];
   return (
-    <button className="flex flex-col items-center justify-center  rounded-xl py-1 px-2 hover:bg-gray-600 ">
+    <button
+      onClick={props.onClick}
+      className="flex flex-col items-center justify-center  rounded-xl py-1 px-2 hover:bg-gray-600 "
+    >
       <div className="aspect-square w-10  text-gray-200 rounded-xl border border-gray-500 flex items-center justify-center">
-    <Icons.CheckCircle className="w-6 h-6" />
+        <Icon className="w-6 h-6" />
       </div>
-      <span className="text-gray-300 mt-2">Hello</span>
+      <span className="text-gray-300 mt-2">{props.label}</span>
     </button>
   );
 };

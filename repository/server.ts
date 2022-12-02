@@ -8,6 +8,7 @@ import {
   ILine,
   IOrder,
   IProduct,
+  IProductDetails,
   IStandardProduct,
   ITag,
 } from "./types";
@@ -119,3 +120,15 @@ export async function getChain(token: string): Promise<IChain> {
   const data = await response.json();
   return data.chain;
 }
+
+// get product details
+export async function getProductDetails(id: string): Promise<IProductDetails> {
+  const response = await fetch(`${ENDPOINT}/site/product/details/${id}`, {
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  return data.details;
+}
+
+

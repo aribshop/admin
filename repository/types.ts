@@ -39,6 +39,7 @@ export interface ICustomProduct {
     lastUpdated: string;
     fields: any[]; // todo add type
   };
+  isPaused: boolean;
 }
 
 export interface IStandardProduct {
@@ -53,8 +54,8 @@ export interface IStandardProduct {
   quantity: number;
   discount: number;
   picture: string;
+  isPaused: boolean;
 }
-
 
 export type IProduct = ICustomProduct | IStandardProduct;
 
@@ -94,4 +95,10 @@ export interface IChain {
   site: string;
   lines: ILine[];
   members: number;
+}
+
+export interface IProductDetails {
+  product: IProduct;
+  link: string;
+  customers: number;
 }
