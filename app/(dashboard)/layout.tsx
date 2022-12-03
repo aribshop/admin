@@ -13,8 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
       <QueryClientProvider client={queryClient}>
+        <head />
         <body>
           <div className="w-full relative min-h-screen bg-gray-800 flex items-start">
             <Nav />
