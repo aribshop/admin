@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
 
 import { getChain, getLines } from "../../../repository/server";
-import LeftPanel from "../components/lines/leftPanel";
-import Line from "../components/lines/line";
-import Icons from "../components/svgs";
+import LeftPanel from "../../../components/lines/leftPanel";
+import Line from "../../../components/lines/line";
+import Icons from "../../../components/svgs";
 
 export default async function Home() {
   const token = cookies().get("token")!.value;

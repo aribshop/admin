@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { FunctionComponent } from "react";
-import { getProductDetails } from "../../../../repository/server";
+import { getProductDetails } from "../../repository/server";
 import Icons from "../svgs";
 import ActionButton from "./actionButton";
 

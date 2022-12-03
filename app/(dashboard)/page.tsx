@@ -1,6 +1,6 @@
-import AchievementCard from "./components/dashobard/achievementCard";
-import SelledCard from "./components/dashobard/selledCard";
-import StatsCard from "./components/dashobard/statsCard";
+import AchievementCard from "../../components/dashobard/achievementCard";
+import SelledCard from "../../components/dashobard/selledCard";
+import StatsCard from "../../components/dashobard/statsCard";
 
 
 export default async function Dashbaord() {

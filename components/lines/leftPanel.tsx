@@ -1,7 +1,7 @@
 "use client";
 
 import { FunctionComponent, useContext, useState } from "react";
-import { LinesContext } from "../../../contexts/linesContext";
+import { LinesContext } from "../../contexts/linesContext";
 import Icons from "../svgs";
 import Card from "./leftPanel/card";
 import Groups from "./leftPanel/groups";

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import ChooseTemplate from "../../components/start/chooseTemplate";
-import ConfigSite from "../../components/start/configSite";
-import SiteConfigStepper from "../../components/start/siteConfigStepper";
-import Icons from "../../components/svgs";
+import ChooseTemplate from "../../../../components/start/chooseTemplate";
+import ConfigSite from "../../../../components/start/configSite";
+import SiteConfigStepper from "../../../../components/start/siteConfigStepper";
+import Icons from "../../../../components/svgs";
 
 export default function Finish() {
   return (

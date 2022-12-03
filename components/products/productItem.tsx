@@ -4,7 +4,7 @@ import {
   ICustomProduct,
   IProduct,
   IStandardProduct,
-} from "../../../../repository/types";
+} from "../../repository/types";
 import Icons from "../svgs";
 
 interface productItemProps {

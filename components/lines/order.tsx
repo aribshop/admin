@@ -5,9 +5,9 @@ import {
   getClient,
   getOrderConfirmations,
   getProduct,
-} from "../../../../repository/server";
-import { IOrder } from "../../../../repository/types";
-import { getRelativeDate } from "../../../../utils";
+} from "../../repository/server";
+import { IOrder } from "../../repository/types";
+import { getRelativeDate } from "../../utils";
 import NavButton from "../navigation/navbutton";
 import Icons from "../svgs";
 

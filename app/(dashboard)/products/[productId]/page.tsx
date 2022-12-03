@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import RightPanel from "../../components/products/rightPanel";
+import RightPanel from "../../../../components/products/rightPanel";
 
 interface SelectedProductProps {
   params: {

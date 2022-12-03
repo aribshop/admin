@@ -1,6 +1,6 @@
 "use client";
 
-import { LinesProvider } from "../../contexts/linesContext";
+import { LinesProvider } from "../../../contexts/linesContext";
 
 export default function LinesLayout({
   children,

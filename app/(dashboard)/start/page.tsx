@@ -1,7 +1,7 @@
 import Link from "next/link";
-import ChooseTemplate from "../components/start/chooseTemplate";
-import SetupWebsite from "../components/start/setupWebsite";
-import Icons from "../components/svgs";
+import ChooseTemplate from "../../../components/start/chooseTemplate";
+import SetupWebsite from "../../../components/start/setupWebsite";
+import Icons from "../../../components/svgs";
 
 export default function Start() {
   return (

@@ -1,9 +1,9 @@
 "use client";
 import { FunctionComponent, useContext, useEffect } from "react";
-import { getOrders } from "../../../../repository/server";
+import { getOrders } from "../../repository/server";
 import { useQuery } from "@tanstack/react-query";
 import Order from "./order";
-import { LinesContext } from "../../../contexts/linesContext";
+import { LinesContext } from "../../contexts/linesContext";
 
 
 interface OrdersProps {

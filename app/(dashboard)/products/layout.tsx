@@ -1,5 +1,5 @@
-import Catalog from "../components/products/catalog";
-import Icons from "../components/svgs";
+import Catalog from "../../../components/products/catalog";
+import Icons from "../../../components/svgs";
 
 export default function ProductsLayout({
   children,
