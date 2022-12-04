@@ -1,23 +1,26 @@
 "use client";
 
-import { FunctionComponent, useState } from "react";
-import Orders from "./orders";
+import { FunctionComponent, useContext, useState } from "react";
+import { LineContext } from "../../contexts/lineContext";
+import Order from "./order";
 
-interface LineProps {
-  name: string;
-  id: string;
-}
+interface LineProps {}
 
-const Line: FunctionComponent<LineProps> = ({ name, id }) => {
-  const [totalOrder, setTotalOder] = useState(0);
+const Line: FunctionComponent<LineProps> = () => {
+  const { lineName, totalOrders, isLoading, orders } = useContext(LineContext);
+
   return (
-    <div className="flex-grow snap-start shrink-0 px-4  w-full max-w-xs  h-full overflow-y-auto">
-      <h2 className="text-lg font-medium text-gray-300">
-        {name} ({totalOrder})
+    <div className="flex-grow  snap-start shrink-0 px-4  w-full max-w-xs  h-full overflow-y-auto">
+      <h2 className="text-lg  font-medium text-gray-300">
+        {lineName} ({totalOrders})
       </h2>
 
       <div className="mt-4 space-y-4">
-        <Orders lineId={id} setTotal={setTotalOder} />
+        {isLoading && <span>Loading ... </span>}
+        
+        {orders.map((order) => (
+          <Order {...order} key={order.id} />
+        ))}
       </div>
     </div>
   );

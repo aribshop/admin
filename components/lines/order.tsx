@@ -40,7 +40,7 @@ const Order: FunctionComponent<OrderProps> = (props) => {
   return (
     <div className="bg-gray-700 border border-white/5  group hover:shadow-lg hover:ring-2 ring-green-300 px-4 py-4 rounded shadow-sm ">
       <div className="flex  justify-between items-start">
-        <Link href={`/line/order/${props.id}`}>
+        <Link href={`/lines/order/${props.id}`}>
           <div className="text-sm text-gray-500">{relativeDate}</div>
           <h2 className="text-lg group-hover:text-green-200 font-medium text-white">
             {product?.metadata.name}

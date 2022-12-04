@@ -19,13 +19,13 @@ const Nav: FunctionComponent<NavProps> = () => {
       </Link>
       <div className="mt-12 flex flex-col items-center space-y-4">
         <Link href="/">
-          <NavButton icon="Home" isActive={route=="/"} />
+          <NavButton icon="Home" isActive={route == "/"} />
         </Link>
         <Link href="/lines">
-          <NavButton icon="Columns" isActive={route=="/lines"}/>
+          <NavButton icon="Columns" isActive={route?.startsWith("/lines")}/>
         </Link>
         <Link href="/products">
-          <NavButton icon="Package" isActive={route=="/products"}/>
+          <NavButton icon="Package" isActive={route?.startsWith("/products")}/>
         </Link>
         <NavButton icon="PiChart" />
       </div>

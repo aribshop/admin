@@ -1,6 +1,5 @@
-"use client";
-
 import { LinesProvider } from "../../../contexts/linesContext";
+import LinePrinciple from "./linesPrinciple";
 
 export default function LinesLayout({
   children,
@@ -9,7 +8,11 @@ export default function LinesLayout({
 }) {
   return (
     <section>
-      <LinesProvider>{children}</LinesProvider>
+      <LinesProvider>
+        {/* @ts-expect-error Server Component */}
+        <LinePrinciple />
+        {children}
+      </LinesProvider>
     </section>
   );
 }
