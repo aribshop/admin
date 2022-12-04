@@ -25,7 +25,7 @@ const Order: FunctionComponent<OrderProps> = (props) => {
   );
 
   const { data: client } = useQuery(["client", props.product], () =>
-    getClient(props.user)
+    getClient(props.client)
   );
 
   useEffect(() => {

@@ -60,7 +60,7 @@ export interface IStandardProduct {
 export type IProduct = ICustomProduct | IStandardProduct;
 
 export interface IOrder {
-  user: string;
+  client: string;
   id: string;
   line: string;
   price: number;
