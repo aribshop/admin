@@ -1,3 +1,3 @@
-export default function Dashbaord() {
+export default function ProductsEmptyPage() {
   return <div></div>;
 }

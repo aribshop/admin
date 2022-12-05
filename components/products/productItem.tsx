@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
+import { ProductsContext } from "../../contexts/productsContext";
 import {
   ICustomProduct,
   IProduct,
@@ -40,24 +41,26 @@ function StandarProductDetail({ product }: { product: IStandardProduct }) {
       </div>
       <div className="text-sm">
         <span className="text-gray-200">Stock: </span>
-        <span className="text-white font-mono">
-          {product.quantity}
-        </span>
+        <span className="text-white font-mono">{product.quantity}</span>
       </div>
 
       <div className="text-sm">
         <span className="text-gray-200">Discount: </span>
-        <span className="text-white font-mono ">
-          {product.discount}%
-        </span>
+        <span className="text-white font-mono ">{product.discount}%</span>
       </div>
     </>
   );
 }
 
 const productItem: FunctionComponent<productItemProps> = ({ product }) => {
+  const { selectedProductID } = useContext(ProductsContext);
+  const isSelected = selectedProductID === product.id;
   return (
-    <div className="bg-white/10 items-stretch flex flex-col hover:ring-2 ring-green-600 hover:shadow rounded-md p-4">
+    <div
+      className={`bg-white/10 items-stretch  flex flex-col hover:ring-2 ring-green-600 hover:shadow rounded-md p-4 
+      ${isSelected ? "ring-2 shadow-lg" : ""}
+      `}
+    >
       <div className="flex items-center justify-between">
         <button className="p-1 rounded-md hover:bg-black/10">
           <Icons.PauseCircle className="w-5 h-5 text-gray-400" />

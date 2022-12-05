@@ -1,29 +1,19 @@
 "use client";
 
-import { FunctionComponent, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { FunctionComponent, useContext } from "react";
 import ProductItem from "./productItem";
-import { getProducts } from "../../repository/server";
+import { ProductsContext } from "../../contexts/productsContext";
 
-interface CatalogProps {
-  siteId: string;
-}
-
-const Catalog: FunctionComponent<CatalogProps> = (props) => {
-  const { data, isLoading } = useQuery(["products", props.siteId], () =>
-    getProducts(props.siteId)
-  );
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+const Catalog: FunctionComponent = () => {
+  const { products } = useContext(ProductsContext);
 
   return (
-    <>
-      {data?.map((product) => (
+    <div className=" py-4 grid grid-cols-3 px-1 -mx-1   flex-1 overflow-y-auto gap-4">
+      
+      {products?.map((product) => (
         <ProductItem product={product} key={product.id} />
       ))}
-    </>
+    </div>
   );
 };
 
