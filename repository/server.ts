@@ -56,10 +56,16 @@ export async function getProducts(siteId: string): Promise<IProduct[]> {
   return data.products;
 }
 
-export async function getOrders(lineId: string): Promise<IOrder[]> {
-  const response = await fetch(`${ENDPOINT}/chain/orders/${lineId}`, {
-    credentials: "include",
-  });
+export async function getOrders(
+  lineId: string,
+  search: string
+): Promise<IOrder[]> {
+  const response = await fetch(
+    `${ENDPOINT}/chain/line/${lineId}/orders?search=${search}`,
+    {
+      credentials: "include",
+    }
+  );
 
   const data = await response.json();
   return data.orders.map((order: any) => ({
@@ -130,5 +136,3 @@ export async function getProductDetails(id: string): Promise<IProductDetails> {
   const data = await response.json();
   return data.details;
 }
-
-

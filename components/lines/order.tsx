@@ -13,7 +13,7 @@ import Icons from "../svgs";
 
 interface OrderProps extends IOrder {}
 
-const Order: FunctionComponent<OrderProps> = (props) => {
+function useOrderFetcher(props: OrderProps) {
   const [relativeDate, setRelativeDate] = useState("");
 
   const { data: confimations } = useQuery(["confirmations", props.id], () =>
@@ -36,6 +36,13 @@ const Order: FunctionComponent<OrderProps> = (props) => {
 
     return () => clearInterval(timer);
   }, [props.date]);
+
+  return { relativeDate, confimations, product, client };
+}
+
+const Order: FunctionComponent<OrderProps> = (props) => {
+  const { relativeDate, confimations, product, client } =
+    useOrderFetcher(props);
 
   return (
     <div className="bg-gray-700 border border-white/5  group hover:shadow-lg hover:ring-2 ring-green-300 px-4 py-4 rounded shadow-sm ">
@@ -62,7 +69,9 @@ const Order: FunctionComponent<OrderProps> = (props) => {
             </div>
           ))}
         </div>
-        <NavButton icon="CheckCircle" />
+        <Link href={`/lines/order/${props.id}/confirm`}>
+          <NavButton icon="CheckCircle" />
+        </Link>
       </div>
 
       <div className="mt-4">

@@ -21,9 +21,9 @@ type Props = {
 export function LineProvider({ children, line }: Props) {
   const { search } = useContext(LinesContext);
 
-  const { data, isLoading } = useQuery(
+  const { data:orders, isLoading } = useQuery(
     ["orders", line.id, search],
-    () => getOrders(line.id),
+    () => getOrders(line.id,search),
     {
       select: (data) => data.filter((o) => o.line === line.id),
     }
@@ -31,9 +31,9 @@ export function LineProvider({ children, line }: Props) {
 
   const values = {
     lineName: line.name,
-    totalOrders: 100,
+    totalOrders: orders?.length || 0,
     isLoading,
-    orders: data || [],
+    orders: orders || [],
   };
   return <LineContext.Provider value={values}>{children}</LineContext.Provider>;
 }
