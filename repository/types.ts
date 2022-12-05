@@ -113,3 +113,11 @@ export interface IProductDetails {
   link: string;
   customers: number;
 }
+
+export interface ITemplate {
+  id: string;
+  name: string;
+  description: string;
+  previewOG: string;
+  type: string;
+}

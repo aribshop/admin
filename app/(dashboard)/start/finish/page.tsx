@@ -23,8 +23,20 @@ export default function Finish() {
           </p>
         </div>
 
-        <div className="mt-8 w-full flex items-start justify-between px-24">
-          <SiteConfigStepper />
+        <div className="mt-8 w-full relative flex items-start justify-between px-24">
+          <SiteConfigStepper
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis"
+            domain="https://amazon.arib.shop"
+            previewOG="https://laknabil.me/background.png"
+            siteName="Amazon INC"
+            step="Template Information"
+            steps={[
+              "Site Information",
+              "Find Unique Domain",
+              "Template Information",
+              "Deploy",
+            ]}
+          />
 
           <ConfigSite />
         </div>

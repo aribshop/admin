@@ -22,7 +22,7 @@ export default function LayoutClient({
         <div className="w-full relative min-h-screen bg-gray-800 flex items-start">
           <Nav />
 
-          <div className=" flex-1 overflow-x-hidden">{children}</div>
+          <div className="flex-1">{children}</div>
         </div>
       </UserProvider>
     </QueryClientProvider>

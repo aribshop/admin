@@ -12,6 +12,7 @@ import {
   IStandardProduct,
   IStuff,
   ITag,
+  ITemplate,
 } from "./types";
 
 const ENDPOINT =
@@ -137,6 +138,17 @@ export async function getStuff(token: string): Promise<IStuff> {
 
   const data = await response.json();
   return data.stuff;
+}
+
+// get templates
+export async function getTemplates(token: string): Promise<ITemplate[]> {
+  const response = await fetch(`${ENDPOINT}/site/templates`, {
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
+  });
+  const data = await response.json();
+  return data.templates;
 }
 
 // get product details
