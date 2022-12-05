@@ -13,6 +13,8 @@ export default async function RootLayout({
 
   const stuff = await getStuff(token);
 
+  // todo should we fetch the site too "/site"?
+
   return (
     <html lang="en">
       <head />

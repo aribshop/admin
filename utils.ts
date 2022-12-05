@@ -18,3 +18,8 @@ export function getRelativeDate(date: Date): string {
     return date.toDateString();
   }
 }
+
+export function makeItDomain(subdomain: string) {
+  // accept only alphanumeric characters and hyphens
+  return subdomain.replace(/[^a-z0-9-]/gi, "").toLowerCase();
+}

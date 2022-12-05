@@ -3,6 +3,7 @@ import Link from "next/link";
 import ChooseTemplate from "../../../components/start/chooseTemplate";
 import SetupWebsite from "../../../components/start/setupWebsite";
 import Icons from "../../../components/svgs";
+import { NewWebsiteProvider } from "../../../contexts/newWebsiteContext";
 import { getTemplates } from "../../../repository/server";
 
 export default async function Start() {
@@ -27,8 +28,10 @@ export default async function Start() {
         </div>
 
         <div className="mt-8 w-full flex items-start justify-between px-24">
-          <SetupWebsite />
-          <ChooseTemplate templates={templates}/>
+          <NewWebsiteProvider>
+            <SetupWebsite />
+            <ChooseTemplate templates={templates} />
+          </NewWebsiteProvider>
         </div>
       </div>
     </div>

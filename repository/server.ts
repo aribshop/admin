@@ -6,6 +6,7 @@ import {
   ICustomProduct,
   IGroup,
   ILine,
+  INewWesbite,
   IOrder,
   IProduct,
   IProductDetails,
@@ -159,4 +160,16 @@ export async function getProductDetails(id: string): Promise<IProductDetails> {
 
   const data = await response.json();
   return data.details;
+}
+
+// create new website
+export async function createSite(site: INewWesbite): Promise<void> {
+  const response = await fetch(`${ENDPOINT}/site/new`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ site }),
+  });
 }

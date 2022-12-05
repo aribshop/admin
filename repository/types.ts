@@ -121,3 +121,15 @@ export interface ITemplate {
   previewOG: string;
   type: string;
 }
+
+export interface INewWesbite {
+  name: string;
+  description: string;
+  subname: string;
+  template: {
+    name: string;
+    description: string;
+    type: string;
+    previewOG: string; // todo don't allow user to insert this!!!
+  };
+}
