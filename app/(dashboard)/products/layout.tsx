@@ -9,7 +9,7 @@ export default function ProductsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ProductsProvider siteId="amazon">
+    <ProductsProvider>
       <div className="w-full flex items-start h-screen">
         <div className="flex-1 flex flex-col h-screen px-12 pt-8 ">
           <div className="flex justify-between items-start border-b border-gray-600 pb-4">

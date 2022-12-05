@@ -1,16 +1,19 @@
 import { createContext, useState } from "react";
+import { IStuff } from "../repository/types";
 
 export const UserContext = createContext({
   site: "",
   setSearch: (search: string) => {},
 });
 
-export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [site, setSite] = useState("");
-
-  return (
-    <UserContext.Provider value={{ site, setSearch: () => {} }}>
-      {children}
-    </UserContext.Provider>
-  );
+type Params = {
+  children: React.ReactNode;
+  stuff: IStuff;
+};
+export function UserProvider({ children, stuff }: Params) {
+  const values = {
+    site: stuff.site,
+    setSearch: () => {},
+  };
+  return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 }

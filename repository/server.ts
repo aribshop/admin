@@ -10,6 +10,7 @@ import {
   IProduct,
   IProductDetails,
   IStandardProduct,
+  IStuff,
   ITag,
 } from "./types";
 
@@ -125,6 +126,17 @@ export async function getChain(token: string): Promise<IChain> {
 
   const data = await response.json();
   return data.chain;
+}
+
+export async function getStuff(token: string): Promise<IStuff> {
+  const response = await fetch(`${ENDPOINT}/users/stuff`, {
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
+  });
+
+  const data = await response.json();
+  return data.stuff;
 }
 
 // get product details

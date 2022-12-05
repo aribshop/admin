@@ -2,9 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getProducts } from "../repository/server";
 import { IProduct } from "../repository/types";
+import { UserContext } from "./userContext";
 
 export const ProductsContext = createContext({
   search: "",
@@ -15,7 +16,6 @@ export const ProductsContext = createContext({
 
 type Params = {
   children: React.ReactNode;
-  siteId: string;
 };
 
 function useSelectedProduct() {
@@ -33,9 +33,10 @@ function useSelectedProduct() {
   return { selectedProductID };
 }
 
-export function ProductsProvider({ children, siteId }: Params) {
+export function ProductsProvider({ children }: Params) {
   const [search, setSearch] = useState("");
   const { selectedProductID } = useSelectedProduct();
+  const { site: siteId } = useContext(UserContext);
 
   const { data: products, isLoading } = useQuery(
     ["products", siteId, search],

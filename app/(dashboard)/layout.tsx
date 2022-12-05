@@ -1,28 +1,24 @@
-"use client";
-import Nav from "../../components/navigation/nav";
+import { cookies } from "next/headers";
+import { getStuff } from "../../repository/server";
+
 import "./globals.css";
+import LayoutClient from "./layoutClient";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const token = cookies().get("token")!.value;
+
+  const stuff = await getStuff(token);
+
   return (
     <html lang="en">
-      <QueryClientProvider client={queryClient}>
-        <head />
-        <body>
-          <div className="w-full relative min-h-screen bg-gray-800 flex items-start">
-            <Nav />
-
-            <div className=" flex-1 overflow-x-hidden">{children}</div>
-          </div>
-        </body>
-      </QueryClientProvider>
+      <head />
+      <body>
+        <LayoutClient stuff={stuff}>{children}</LayoutClient>
+      </body>
     </html>
   );
 }

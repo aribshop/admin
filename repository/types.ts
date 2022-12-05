@@ -89,6 +89,17 @@ export interface IClient {
   location: string;
 }
 
+export interface IStuff {
+  user: {
+    id: string;
+    name: string;
+    picture: string;
+  };
+  groups: string[];
+  site: string;
+  isAdmin: boolean; // one attribute to distinguache between the Admin and Stuff
+}
+
 export interface IChain {
   id: string;
   name: string;

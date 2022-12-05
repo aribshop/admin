@@ -1,12 +1,18 @@
+import { cookies } from "next/headers";
 import AchievementCard from "../../components/dashobard/achievementCard";
 import SelledCard from "../../components/dashobard/selledCard";
 import StatsCard from "../../components/dashobard/statsCard";
+import { getStuff } from "../../repository/server";
 
 export default async function Dashbaord() {
+  const token = cookies().get("token")!.value;
+
+  const stuff = await getStuff(token);
+
   const data = {
-    name: "Nabil",
+    name: stuff.user.name,
     siteLogo: "https://laknabil.me/nabil.png",
-    siteName: "SmartBands",
+    siteName: stuff.site, // todo get site name not the site ID
 
     tip: {
       title: "Tip",
