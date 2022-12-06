@@ -1,10 +1,23 @@
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import ChooseTemplate from "../../../../components/start/chooseTemplate";
-import ConfigSite from "../../../../components/start/configSite";
+import ConfigSite from "../../../../components/start/configure/configSite";
 import SiteConfigStepper from "../../../../components/start/siteConfigStepper";
 import Icons from "../../../../components/svgs";
+import { getSite, getStuff } from "../../../../repository/server";
 
-export default function Finish() {
+export default async function Finish() {
+  const token = cookies().get("token")!.value;
+
+  const stuff = await getStuff(token);
+
+  const site = await getSite(stuff.site, token);
+
+  if (!site) {
+    return redirect("/start");
+  }
+
   return (
     <div className="w-full min-h-screen relative">
       <div className="w-full absolute top-0 left-0 right-0 h-64 bg-black border-b border-gray-500"></div>
@@ -25,10 +38,10 @@ export default function Finish() {
 
         <div className="mt-8 w-full relative flex items-start justify-between px-24">
           <SiteConfigStepper
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis"
-            domain="https://amazon.arib.shop"
-            previewOG="https://laknabil.me/background.png"
-            siteName="Amazon INC"
+            description={site.description}
+            domain={`https://${site.subname}.arib.shop`}
+            previewOG={site.template.previewOG}
+            siteName={site.name}
             step="Template Information"
             steps={[
               "Site Information",
@@ -38,7 +51,7 @@ export default function Finish() {
             ]}
           />
 
-          <ConfigSite />
+          <ConfigSite template={site.template} siteId={site.id} />
         </div>
       </div>
     </div>

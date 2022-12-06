@@ -133,3 +133,18 @@ export interface INewWesbite {
     previewOG: string; // todo don't allow user to insert this!!!
   };
 }
+
+export interface IWebsite {
+  id: string;
+  name: string;
+  description: string;
+  subname: string;
+  user: string;
+  template: {
+    id: string;
+    type: string;
+    name: string;
+    description: string;
+    previewOG: string;
+  };
+}

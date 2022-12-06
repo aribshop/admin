@@ -15,7 +15,7 @@ const ChooseTemplate: FunctionComponent<ChooseTemplateProps> = ({
     useContext(NewWebsiteContext);
 
   useEffect(() => {
-    setTemplate(templates[0]);
+    if (!templates) setTemplate(templates[0]);
   }, []);
 
   return (

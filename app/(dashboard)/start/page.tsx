@@ -4,13 +4,17 @@ import ChooseTemplate from "../../../components/start/chooseTemplate";
 import SetupWebsite from "../../../components/start/setupWebsite";
 import Icons from "../../../components/svgs";
 import { NewWebsiteProvider } from "../../../contexts/newWebsiteContext";
-import { getTemplates } from "../../../repository/server";
+import { getSite, getStuff, getTemplates } from "../../../repository/server";
 
 export default async function Start() {
   const token = cookies().get("token")!.value;
 
-  // const lines = await getLines(token);
   const templates = await getTemplates(token);
+
+
+  const stuff = await getStuff(token);
+
+  const site = await getSite(stuff.site, token);
 
   return (
     <div className="w-full min-h-screen relative">
@@ -28,7 +32,7 @@ export default async function Start() {
         </div>
 
         <div className="mt-8 w-full flex items-start justify-between px-24">
-          <NewWebsiteProvider>
+          <NewWebsiteProvider pervSite={site}>
             <SetupWebsite />
             <ChooseTemplate templates={templates} />
           </NewWebsiteProvider>

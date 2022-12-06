@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import { createSite } from "../repository/server";
-import { ITemplate } from "../repository/types";
+import { ITemplate, IWebsite } from "../repository/types";
 
 export const NewWebsiteContext = createContext({
   siteName: "",
@@ -25,17 +25,21 @@ export const NewWebsiteContext = createContext({
 
 export function NewWebsiteProvider({
   children,
+  pervSite,
 }: {
   children: React.ReactNode;
+  pervSite?: IWebsite;
 }) {
   const router = useRouter();
 
-  const [siteName, setSiteName] = useState("");
-  const [description, setDescription] = useState("");
-  const [domainName, setDomainName] = useState("");
+  const [siteName, setSiteName] = useState(pervSite?.name ?? "");
+  const [description, setDescription] = useState(pervSite?.description ?? "");
+  const [domainName, setDomainName] = useState(pervSite?.subname ?? "");
   const [isDomainNameAvailable, setIsDomainNameAvailable] = useState(true);
   const [isValidationLoading, setIsValidationLoading] = useState(false);
-  const [template, setTemplate] = useState<ITemplate>();
+  const [template, setTemplate] = useState<ITemplate | undefined>(
+    pervSite?.template
+  );
 
   useEffect(() => {
     // todo use debouncing to prevent spamming the server & local checking for bad words

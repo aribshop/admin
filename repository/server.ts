@@ -14,6 +14,7 @@ import {
   IStuff,
   ITag,
   ITemplate,
+  IWebsite,
 } from "./types";
 
 const ENDPOINT =
@@ -172,4 +173,18 @@ export async function createSite(site: INewWesbite): Promise<void> {
     },
     body: JSON.stringify({ site }),
   });
+}
+
+export async function getSite(
+  id: string,
+  token: string
+): Promise<IWebsite | undefined> {
+  const response = await fetch(`${ENDPOINT}/site/${id}`, {
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
+  });
+
+  const data = await response.json();
+  return data?.site;
 }
