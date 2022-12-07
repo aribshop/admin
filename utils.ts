@@ -23,3 +23,14 @@ export function makeItDomain(subdomain: string) {
   // accept only alphanumeric characters and hyphens
   return subdomain.replace(/[^a-z0-9-]/gi, "").toLowerCase();
 }
+
+
+
+// create function that uploads images to server 
+// and returns the url
+export async function uploadImage(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "nextjs");
+  return "https://laknabil.me/background.png"
+}

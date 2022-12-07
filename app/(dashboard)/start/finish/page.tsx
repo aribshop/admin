@@ -5,6 +5,7 @@ import ChooseTemplate from "../../../../components/start/chooseTemplate";
 import ConfigSite from "../../../../components/start/configure/configSite";
 import SiteConfigStepper from "../../../../components/start/siteConfigStepper";
 import Icons from "../../../../components/svgs";
+import { ConfigTemplateProvider } from "../../../../contexts/configTemplateContext";
 import { getSite, getStuff } from "../../../../repository/server";
 
 export default async function Finish() {
@@ -36,23 +37,25 @@ export default async function Finish() {
           </p>
         </div>
 
-        <div className="mt-8 w-full relative flex items-start justify-between px-24">
-          <SiteConfigStepper
-            description={site.description}
-            domain={`https://${site.subname}.arib.shop`}
-            previewOG={site.template.previewOG}
-            siteName={site.name}
-            step="Template Information"
-            steps={[
-              "Site Information",
-              "Find Unique Domain",
-              "Template Information",
-              "Deploy",
-            ]}
-          />
+        <ConfigTemplateProvider site={site}>
+          <div className="mt-8 w-full relative flex items-start justify-between px-24">
+            <SiteConfigStepper
+              description={site.description}
+              domain={`https://${site.subname}.arib.shop`}
+              previewOG={site.template.previewOG}
+              siteName={site.name}
+              step="Template Information"
+              steps={[
+                "Site Information",
+                "Find Unique Domain",
+                "Template Information",
+                "Deploy",
+              ]}
+            />
 
-          <ConfigSite template={site.template} siteId={site.id} />
-        </div>
+            <ConfigSite template={site.template} siteId={site.id} />
+          </div>
+        </ConfigTemplateProvider>
       </div>
     </div>
   );
