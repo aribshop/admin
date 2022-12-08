@@ -10,24 +10,29 @@ export default function ProductsLayout({
 }) {
   return (
     <ProductsProvider>
-      <div className="w-full flex items-start h-screen">
-        <div className="flex-1 flex flex-col h-screen px-12 pt-8 ">
-          <div className="flex justify-between items-start border-b border-gray-600 pb-4">
+      <div className="flex items-start w-full h-screen">
+        <div className=" flex flex-col flex-1 h-screen px-12 pt-8">
+          <div className="flex items-start justify-between pb-4 border-b border-gray-600">
             <h1 className="text-lg text-gray-300">Products</h1>
 
             <div className="flex items-center space-x-4">
-              <button className="p-1 rounded-md hover:bg-gray-700">
+              <button className="hover:bg-gray-700 p-1 rounded-md">
                 <Icons.Search className="w-6 h-6 text-gray-500" />
               </button>
-              <button className="p-1 rounded-md hover:bg-gray-700">
-                <Icons.Info className="w-6 h-6 text-gray-500" />
-              </button>
+              
               <Link
                 href={"/stats/products"}
-                className="p-1 rounded-md hover:bg-gray-700"
+                className="hover:bg-gray-700 p-1 rounded-md"
               >
                 <Icons.PiChart className="w-6 h-6 text-gray-500" />
               </Link>
+
+              <Link
+              href="/products/new"
+              className="px-8 py-1 text-white bg-green-400 rounded-md"
+            >
+              New Product
+            </Link>
             </div>
           </div>
 
