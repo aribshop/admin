@@ -72,11 +72,21 @@ export interface IOrder {
 
 export interface IConfirmation {
   id: string;
-  date: Date;
+  type: string;
+  group?: string;
+  user?: string;
   line: string;
   order: string;
-  type: string;
-  user: string;
+  src?: string;
+  date: Date;
+}
+
+export interface IUnConfirmed{
+  orderId: string;
+	confirmationTypes: ("verification")[];
+	nextLine: string;
+  title:string;
+  currentLine:string;
 }
 
 export interface IClient {

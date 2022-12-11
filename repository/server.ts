@@ -14,6 +14,7 @@ import {
 	IStuff,
 	ITag,
 	ITemplate,
+	IUnConfirmed,
 	IWebsite,
 } from "./types";
 
@@ -94,6 +95,24 @@ export async function getOrderConfirmations(
 		...confirmation,
 		date: new Date(confirmation.date),
 	}));
+}
+
+// todo use better name, see the Backend !
+export async function getOrderUnconfirmed(
+	token: string,
+	oderId: string
+): Promise<IUnConfirmed> {
+	const response = await fetch(
+		`${ENDPOINT}/chain/order/unconfirmed/${oderId}`,
+		{
+			headers: {
+				Authorization: `Bearer ${auth}`,
+			},
+		}
+	);
+
+	const data = await response.json();
+	return data.unconfirmed;
 }
 
 // get product from id
@@ -221,4 +240,23 @@ export async function addProduct(
 			body: JSON.stringify({ product, siteId }),
 		}
 	);
+}
+
+
+export async function ConfirmOrder(orderId:string,confirmation:IConfirmation):Promise<void>{
+	const response  = await fetch(
+		`${ENDPOINT}/chain/orders/move`,
+		{
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ orderId, confirmation:{
+				...confirmation,
+				date: confirmation.date.toISOString(),
+			} }),
+		}
+	);
+
 }
