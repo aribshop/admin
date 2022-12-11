@@ -48,7 +48,7 @@ const Order: FunctionComponent<OrderProps> = (props) => {
 
   const [_, drag, __] = useDrag(
     () => ({
-      type: "orders",
+      type: "orders", // todo use Next Line Id as a type here, so we prevent moving orders to other lines
       item: props,
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.5 : 1
