@@ -79,7 +79,7 @@ const Order: FunctionComponent<OrderProps> = (props) => {
         <div className="flex items-center space-x-2">
           {confimations?.map((confirmation) => (
             <div className="flex items-center justify-center w-8 h-8 text-sm font-medium text-white uppercase bg-gray-500 rounded-full">
-              <span>{confirmation.user.slice(0, 1)}</span>
+              <span>{confirmation.user?.slice(0, 1)}</span>
             </div>
           ))}
         </div>
