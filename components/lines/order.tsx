@@ -1,3 +1,5 @@
+import { useDrag } from 'react-dnd'
+
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { FunctionComponent, useEffect, useState } from "react";
@@ -44,12 +46,24 @@ const Order: FunctionComponent<OrderProps> = (props) => {
   const { relativeDate, confimations, product, client } =
     useOrderFetcher(props);
 
+  const [_, drag, __] = useDrag(
+    () => ({
+      type: "orders",
+      item: props,
+      collect: (monitor) => ({
+        opacity: monitor.isDragging() ? 0.5 : 1
+      })
+    }),
+    []
+  );
+
+
   return (
-    <div className="bg-gray-700 border border-white/5  group hover:shadow-lg hover:ring-2 ring-green-300 px-4 py-4 rounded shadow-sm ">
-      <div className="flex  justify-between items-start">
+    <div ref={drag} className="border-white/5 group hover:shadow-lg hover:ring-2 ring-green-300 px-4 py-4 bg-gray-700 border rounded shadow-sm">
+      <div className="flex items-start justify-between">
         <Link href={`/lines/order/${props.id}`}>
           <div className="text-sm text-gray-500">{relativeDate}</div>
-          <h2 className="text-lg group-hover:text-green-200 font-medium text-white">
+          <h2 className="group-hover:text-green-200 text-lg font-medium text-white">
             {product?.metadata.name}
           </h2>
         </Link>
@@ -61,10 +75,10 @@ const Order: FunctionComponent<OrderProps> = (props) => {
         </div>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
-        <div className="flex  space-x-2 items-center">
+      <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center space-x-2">
           {confimations?.map((confirmation) => (
-            <div className="w-8 h-8 text-sm font-medium flex items-center justify-center  text-white uppercase bg-gray-500 rounded-full">
+            <div className="flex items-center justify-center w-8 h-8 text-sm font-medium text-white uppercase bg-gray-500 rounded-full">
               <span>{confirmation.user.slice(0, 1)}</span>
             </div>
           ))}
@@ -75,18 +89,18 @@ const Order: FunctionComponent<OrderProps> = (props) => {
       </div>
 
       <div className="mt-4">
-        <h3 className="text-white font-medium text-sm">Details</h3>
-        <p className="text-md text-gray-400 leading-6">
+        <h3 className="text-sm font-medium text-white">Details</h3>
+        <p className="text-md leading-6 text-gray-400">
           {product?.metadata.description}
         </p>
       </div>
       <div className="mt-6">
         {!!client && (
           <>
-            <h3 className="text-white font-medium text-sm">Client</h3>
+            <h3 className="text-sm font-medium text-white">Client</h3>
             <div className="flex items-center space-x-2">
               <Icons.User className="w-4 h-4 text-green-700" />
-              <p className="text-md text-gray-400 leading-6">
+              <p className="text-md leading-6 text-gray-400">
                 {client.name} - {client.phone}
               </p>
             </div>
