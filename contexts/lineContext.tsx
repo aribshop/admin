@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { getOrders } from "../repository/server";
 import { ILine, IOrder } from "../repository/types";
 import { LinesContext } from "./linesContext";
@@ -19,11 +19,13 @@ type Props = {
 };
 
 export function LineProvider({ children, line }: Props) {
-  const { search } = useContext(LinesContext);
+  const { search, subscribeToLine } = useContext(LinesContext);
 
-  const { data:orders, isLoading } = useQuery(
+  useEffect(() => subscribeToLine(line.id), []);
+
+  const { data: orders, isLoading } = useQuery(
     ["orders", line.id, search],
-    () => getOrders(line.id,search),
+    () => getOrders(line.id, search),
     {
       select: (data) => data.filter((o) => o.line === line.id),
     }

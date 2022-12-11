@@ -43,6 +43,7 @@ export default async function Confirm(props: Props) {
 							<VerificationConfirmation
 								lineId={unconfrimOrder.currentLine}
 								orderId={props.params.orderId}
+								nextLineId={unconfrimOrder.nextLine}
 							/>
 						)}
 					</div>

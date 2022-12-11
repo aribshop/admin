@@ -38,7 +38,7 @@ export function ProductsProvider({ children }: Params) {
   const { selectedProductID } = useSelectedProduct();
   const { site: siteId } = useContext(UserContext);
 
-  const { data: products, isLoading } = useQuery(
+  const { data: products } = useQuery(
     ["products", siteId, search],
     () => getProducts(siteId)
   );
