@@ -5,27 +5,32 @@ import { createContext, useContext, useState } from "react";
 import { addProduct } from "../../repository/server";
 import { UserContext } from "../userContext";
 
-export const NewCustomProductContext = createContext({
-	// todo refactor this with the NewStandarProductContext!, sense both share the basics METADATA! (title,tags, and probaly the ID generations!)
+export const NewStandarProductContext = createContext({
 	setTitle: (val: string) => {},
 	setDescription: (val: string) => {},
 	setTags: (val: string) => {},
+	setPicture: (val: string) => {},
+	setPrice: (val: string) => {},
 
 	publish: () => {},
 
-	setCustomField: (val: any, i: number) => {},
 });
 
 type Props = {
 	children: React.ReactNode;
 };
 
-export function NewCustomProductProvider({ children }: Props) {
+export function NewStandarProductProvider({ children }: Props) {
+
 	const { site: siteId } = useContext(UserContext);
 
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [tags, setTags] = useState("");
+
+	const [price, setPrice] = useState("");
+	const [picture, setPicture] = useState("");
+
 
 	const [fields, setFeilds] = useState<{ [key: string]: any }[]>([]);
 
@@ -43,27 +48,20 @@ export function NewCustomProductProvider({ children }: Props) {
 	}
 
 	async function publish() {
-		await addProduct(siteId, {
-			isCustom: true,
+		await addProduct(siteId,{
+            isCustom: false,
+			discount:0,
 			id: "123",
-			isPaused: false,
-			metadata: {
+			isPaused:false,
+			metadata:{
 				description,
 				name: title,
 				tag: tags.split(","),
 			},
-			dailyLimit: 1000,
-			form: {
-				lastUpdated: new Date().toISOString(),
-				version: 1,
-				fields: fields.map((field) => ({
-					name: field.name,
-					type: field.type,
-					required: field.isRequired ?? false,
-					options: field.options.split(","),
-				})),
-			},
-		});
+			picture,
+			price: parseFloat(price),
+			quantity: 100000,
+        })
 	}
 
 	const values = {
@@ -72,11 +70,13 @@ export function NewCustomProductProvider({ children }: Props) {
 		setTags,
 		publish,
 		setCustomField,
+		setPicture,
+		setPrice,
 	};
 
 	return (
-		<NewCustomProductContext.Provider value={values}>
+		<NewStandarProductContext.Provider value={values}>
 			{children}
-		</NewCustomProductContext.Provider>
+		</NewStandarProductContext.Provider>
 	);
 }

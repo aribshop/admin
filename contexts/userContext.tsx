@@ -8,7 +8,7 @@ export const UserContext = createContext({
 
 type Params = {
   children: React.ReactNode;
-  stuff: IStuff;
+  stuff: IStuff; // todo why we arn't sharing the stuff!
 };
 export function UserProvider({ children, stuff }: Params) {
   const values = {

@@ -34,7 +34,6 @@ export interface ICustomProduct {
   isCustom: true;
   dailyLimit: number;
   form: {
-    id: string;
     version: number;
     lastUpdated: string;
     fields: any[]; // todo add type

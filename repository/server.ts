@@ -205,3 +205,20 @@ export async function updateTemplate(
 	const data = await response.json();
 	return data?.template;
 }
+
+export async function addProduct(
+	siteId: string,
+	product: IProduct
+): Promise<void> {
+	const response = await fetch(
+		`${ENDPOINT}/site/product/${product.isCustom ? "custom" : "standard"}`,
+		{
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ product, siteId }),
+		}
+	);
+}
