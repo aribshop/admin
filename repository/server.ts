@@ -6,6 +6,8 @@ import {
 	ICustomProduct,
 	IGroup,
 	ILine,
+	INewGroup,
+	INewTag,
 	INewWesbite,
 	IOrder,
 	IProduct,
@@ -259,4 +261,28 @@ export async function ConfirmOrder(orderId:string,confirmation:IConfirmation):Pr
 		}
 	);
 
+}
+
+
+// create new group
+export async function createGroup(group: INewGroup): Promise<void> {
+	const response = await fetch(`${ENDPOINT}/chain/group/create`, {
+		method: "POST",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ group }),
+	});
+}
+
+export async function createtag(tag: INewTag): Promise<void> {
+	const response = await fetch(`${ENDPOINT}/chain/tag/create`, {
+		method: "POST",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ tag }),
+	});
 }

@@ -18,8 +18,21 @@ export interface IGroup {
   site: string;
 }
 
+// todo check id this pattren is good, we are creating two types of the same thing execept the ID!!, i think the frontend should create the id, since we are doing this in some routes!!
+
+export interface INewGroup {
+  site: string;
+  name: string;
+  viewOnly: boolean;
+}
+
 export interface ITag {
   id: string;
+  name: string;
+  description: string;
+}
+
+export interface INewTag {
   name: string;
   description: string;
 }
@@ -81,12 +94,12 @@ export interface IConfirmation {
   date: Date;
 }
 
-export interface IUnConfirmed{
+export interface IUnConfirmed {
   orderId: string;
-	confirmationTypes: ("verification")[];
-	nextLine: string;
-  title:string;
-  currentLine:string;
+  confirmationTypes: "verification"[];
+  nextLine: string;
+  title: string;
+  currentLine: string;
 }
 
 export interface IClient {

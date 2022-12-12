@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FunctionComponent, useContext, useState } from "react";
 import { LinesContext } from "../../contexts/linesContext";
 import Icons from "../svgs";
@@ -41,9 +42,9 @@ const LeftPanel: FunctionComponent<LeftPanelProps> = () => {
 
           <div className="mt-4 flex justify-between items-center">
             <h2 className="text-2xl font-medium text-white">Organize</h2>
-            <button className="p-1 rounded-md bg-green-600/60* text-white">
+            <Link href="/lines/organize/new" className="p-1 rounded-md bg-green-600/60 text-white">
               <Icons.Add className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="mt-4">
