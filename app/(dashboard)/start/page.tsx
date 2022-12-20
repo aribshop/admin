@@ -11,10 +11,11 @@ export default async function Start() {
 
   const templates = await getTemplates(token);
 
-
   const stuff = await getStuff(token);
 
-  const site = await getSite(stuff.site, token);
+  const site = await getSite(stuff.site, token).catch(() => {
+    return undefined;
+  });
 
   return (
     <div className="w-full min-h-screen relative">

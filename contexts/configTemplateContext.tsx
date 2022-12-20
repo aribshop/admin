@@ -22,9 +22,9 @@ export function ConfigTemplateProvider({
   const router = useRouter();
 
   async function next() {
-    await updateTemplate(site.id,{
+    await updateTemplate(site.subname,{
       ...template,
-      ...site.template // todo i don't know if this is good, basically we are assigning what the server already sent to us back in this fetch!
+      ...site.template // todo i don't know if this is good, basically we are assigning what the server already sent to us back in this fetch!, isn't that okay, we are updating, the missing peice however, is the API need to validate the data!
     } as any);
     
     

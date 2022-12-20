@@ -186,14 +186,14 @@ export async function getProductDetails(id: string): Promise<IProductDetails> {
 }
 
 // create new website
-export async function createSite(site: INewWesbite): Promise<void> {
+export async function createSite(website: INewWesbite): Promise<void> {
   const response = await fetch(`${ENDPOINT}/site/new`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ site }),
+    body: JSON.stringify({ site: website.site, template: website.template }),
   });
 }
 

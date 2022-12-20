@@ -47,9 +47,11 @@ export function NewWebsiteProvider({
 
   async function next() {
     await createSite({
-      name: siteName,
-      description,
-      subname: domainName,
+      site: {
+        name: siteName,
+        description,
+        subname: domainName,
+      },
       template: {
         name: template!.name,
         description: template!.description,

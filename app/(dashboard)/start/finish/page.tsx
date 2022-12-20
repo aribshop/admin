@@ -13,7 +13,7 @@ export default async function Finish() {
 
   const stuff = await getStuff(token);
 
-  const site = await getSite(stuff.site, token);
+  const site = await getSite(stuff.site, token).catch(() => {});
 
   if (!site) {
     return redirect("/start");
@@ -53,7 +53,7 @@ export default async function Finish() {
               ]}
             />
 
-            <ConfigSite template={site.template} siteId={site.id} />
+            <ConfigSite template={site.template} siteId={site.subname} />
           </div>
         </ConfigTemplateProvider>
       </div>
