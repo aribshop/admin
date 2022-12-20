@@ -9,10 +9,12 @@ export default function NewTag() {
   const [tagName, setTagName] = useState("");
   const [description, setDescription] = useState("");
 
+  const { site } = useContext(UserContext);
   async function create() {
-    createtag({
+    await createtag({
       name: tagName,
       description,
+      site,
     });
 
     router.replace("/lines");

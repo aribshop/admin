@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import {
   IChain,
   IClient,
@@ -21,18 +20,19 @@ import {
   IWebsite,
 } from "./types";
 
+import AuthClient from "./auth.client";
+
+import { getIdToken } from "firebase/auth";
+
 const ENDPOINT =
   process.env.NODE_ENV === "production"
     ? "https://api-yboq3dpusa-uc.a.run.app/"
     : "http://localhost:3001";
 
-const auth =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VyIjoiZHNkIn0.YSDNYBsfLHcc20s7gT0_DjkTj8DmcQICurdz0NWtnIY";
-
-export async function getLines(auth: string): Promise<ILine[]> {
+export async function getLines(token: string): Promise<ILine[]> {
   const response = await fetch(`${ENDPOINT}/chain/lines`, {
     headers: {
-      Authorization: `Bearer ${auth}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -109,7 +109,7 @@ export async function getOrderUnconfirmed(
     `${ENDPOINT}/chain/order/unconfirmed/${oderId}`,
     {
       headers: {
-        Authorization: `Bearer ${auth}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -118,9 +118,11 @@ export async function getOrderUnconfirmed(
   return data.unconfirmed;
 }
 
-// get product from id
-export async function getProduct(id: string): Promise<IProduct> {
-  const response = await fetch(`${ENDPOINT}/site/product/${id}`, {
+export async function getProduct(
+  siteId: string,
+  id: string
+): Promise<IProduct> {
+  const response = await fetch(`${ENDPOINT}/site/product/${siteId}/${id}`, {
     credentials: "include",
   });
 
@@ -145,7 +147,7 @@ export async function getClient(id: string): Promise<IClient> {
 export async function getChain(token: string): Promise<IChain> {
   const response = await fetch(`${ENDPOINT}/chain`, {
     headers: {
-      Authorization: `Bearer ${auth}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -156,7 +158,7 @@ export async function getChain(token: string): Promise<IChain> {
 export async function getStuff(token: string): Promise<IStuff> {
   const response = await fetch(`${ENDPOINT}/users/stuff`, {
     headers: {
-      Authorization: `Bearer ${auth}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -168,7 +170,7 @@ export async function getStuff(token: string): Promise<IStuff> {
 export async function getTemplates(token: string): Promise<ITemplate[]> {
   const response = await fetch(`${ENDPOINT}/site/templates`, {
     headers: {
-      Authorization: `Bearer ${auth}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   const data = await response.json();
@@ -186,7 +188,7 @@ export async function getProductDetails(id: string): Promise<IProductDetails> {
 }
 
 // create new website
-export async function createSite(website: INewWesbite): Promise<void> {
+export async function createSite(website: INewWesbite): Promise<string> {
   const response = await fetch(`${ENDPOINT}/site/new`, {
     method: "POST",
     credentials: "include",
@@ -195,6 +197,9 @@ export async function createSite(website: INewWesbite): Promise<void> {
     },
     body: JSON.stringify({ site: website.site, template: website.template }),
   });
+
+  const token = await getIdToken(AuthClient.currentUser!, true);
+  return token;
 }
 
 export async function getSite(
@@ -203,7 +208,7 @@ export async function getSite(
 ): Promise<IWebsite | undefined> {
   const response = await fetch(`${ENDPOINT}/site/${id}`, {
     headers: {
-      Authorization: `Bearer ${auth}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 

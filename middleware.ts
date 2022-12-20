@@ -17,11 +17,7 @@ export default function middleware(request: Request) {
     return Response.redirect(url);
   }
   // if the request has a cookie, redirect to home and set "set-cookie" header
-  if (
-    url.pathname === "/" &&
-    url.search.includes("authorized") &&
-    request.headers.get("cookie")
-  ) {
+  if (url.search.includes("authorized") && request.headers.get("cookie")) {
     url.search = "";
 
     return rewrite(url, {

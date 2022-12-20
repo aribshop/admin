@@ -35,6 +35,7 @@ export interface ITag {
 export interface INewTag {
   name: string;
   description: string;
+  site: string;
 }
 
 export interface ICustomProduct {
@@ -113,11 +114,9 @@ export interface IClient {
 }
 
 export interface IStuff {
-  user: {
-    id: string;
-    name: string;
-    picture: string;
-  };
+  id: string;
+  name: string;
+  picture: string;
   groups: string[];
   site: string;
   isAdmin: boolean; // one attribute to distinguache between the Admin and Stuff

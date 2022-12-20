@@ -1,3 +1,5 @@
+import {v4 as UUID} from "uuid"
+
 import { cookies } from "next/headers";
 import AchievementCard from "../../components/dashobard/achievementCard";
 import SelledCard from "../../components/dashobard/selledCard";
@@ -10,7 +12,7 @@ export default async function Dashbaord() {
   const stuff = await getStuff(token);
 
   const data = {
-    name: stuff.user.name,
+    name: stuff.name,
     siteLogo: "https://laknabil.me/nabil.png",
     siteName: stuff.site, // todo get site name not the site ID
 
@@ -60,13 +62,13 @@ export default async function Dashbaord() {
 
     finishedOrders: [
       {
-        id: "1",
+        id: UUID(),
         title: "Order 1",
         date: new Date(),
         image: "https://laknabil.me/nabil.png",
       },
       {
-        id: "2",
+        id: UUID(),
         title: "Order 2",
         date: new Date(),
         image: "https://laknabil.me/nabil.png",

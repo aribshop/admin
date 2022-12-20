@@ -1,4 +1,5 @@
 "use client";
+import {v4 as UUID} from "uuid"
 
 import { useQuery } from "@tanstack/react-query";
 import { createContext, useContext, useState } from "react";
@@ -51,7 +52,7 @@ export function NewStandarProductProvider({ children }: Props) {
 		await addProduct(siteId,{
             isCustom: false,
 			discount:0,
-			id: "123",
+			id: UUID(),
 			isPaused:false,
 			metadata:{
 				description,

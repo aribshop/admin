@@ -8,7 +8,7 @@ type Props = {
 export function TagInputs(props: Props) {
 	const [input, setInput] = useState("");
 
-	const [tags, setTags] = useState<string[]>(["hello", "worlds", "test"]);
+	const [tags, setTags] = useState<string[]>([]);
 
 	useEffect(() => {
 		props.onChange(tags.join(","));

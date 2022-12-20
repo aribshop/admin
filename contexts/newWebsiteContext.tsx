@@ -46,7 +46,7 @@ export function NewWebsiteProvider({
   }, [domainName]);
 
   async function next() {
-    await createSite({
+    const token = await createSite({
       site: {
         name: siteName,
         description,
@@ -59,7 +59,9 @@ export function NewWebsiteProvider({
         previewOG: template!.previewOG,
       },
     });
-    router.push("/start/finish");
+
+    document.cookie = `token=${token}` // FIXME due to HttpOnly cookie, the new Cookie Value wan't take effect !! 
+    router.push("/start/finish/?authorized");
   }
 
   const values = {
