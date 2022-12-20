@@ -170,3 +170,13 @@ export interface IWebsite {
     previewOG: string;
   };
 }
+
+export interface INewLine {
+  name: string;
+  maxOrders: number;
+  isPublic: boolean;
+  next?: string;
+  expiresTime: number;
+  site: string;
+  confirmations: string[];
+}
